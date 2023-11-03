@@ -1,3 +1,11 @@
+body,
+p,
+i,
+div {
+  margin: 0;
+  padding: 0;
+}
+
 /* NAVBAR */
 /* Sticky navbar */
 .navbar {
@@ -7,24 +15,30 @@
   bottom: 0;
   width: 100%;
   border-top: 2px solid rgb(67, 67, 67);
+  display: flex;
+  justify-content: center;
 }
 /* Style buttons */
 .navbar div {
-  float: left;
-  display: block;
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+}
+.navbar p {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 14px;
+}
+.navbar i {
+  font-size: 25px;
 }
 /* Hover */
 .navbar div:hover {
-  background-color: #ddd;
+  background-color: #747474;
   color: black;
 }
 /* Active button */
 .navbar div.active {
-  background-color: #04aa6d;
+  background-color: #a9a9a9;
   color: white;
 }
