@@ -1,7 +1,10 @@
-body,
-p,
-i,
-div {
+:root {
+  --accent-color: rgb(251, 130, 65);
+  --blackish-color: rgb(20, 20, 20);
+}
+
+/* prettier-ignore */
+body, p, i, div {
   margin: 0;
   padding: 0;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -34,7 +37,7 @@ body {
   );
 }
 .blue-text {
-  color: rgb(65, 107, 251);
+  color: var(--accent-color);
 }
 
 /* BUTTON */
@@ -44,7 +47,7 @@ body {
   left: 50%;
   border-radius: 50%;
   transform: translateX(-50%);
-  background-color: rgb(65, 107, 251);
+  background-color: var(--accent-color);
   width: 55px;
   height: 55px;
   display: flex;
@@ -54,7 +57,7 @@ body {
 
 /* NAVBAR */
 .navbar {
-  background-color: rgb(20, 20, 20);
+  background-color: var(--blackish-color);
   overflow: hidden;
   position: fixed;
   bottom: 0;
@@ -91,8 +94,8 @@ body {
     ellipse at 50% 100%,
     rgba(86, 86, 86, 0.5) 0%,
     rgba(76, 76, 76, 0.5) 30%,
-    rgba(20, 20, 20, 1) 70%,
-    rgba(20, 20, 20, 1) 100%
+    var(--blackish-color) 70%,
+    var(--blackish-color) 100%
   );
   opacity: 0;
   transition: opacity 0.5s;
@@ -114,8 +117,8 @@ body {
     ellipse at 50% 100%,
     rgba(86, 86, 86, 0.5) 0%,
     rgba(76, 76, 76, 0.5) 30%,
-    rgba(20, 20, 20, 1) 70%,
-    rgba(20, 20, 20, 1) 100%
+    var(--blackish-color) 70%,
+    var(--blackish-color) 100%
   );
   color: #e8e8e8;
 }
