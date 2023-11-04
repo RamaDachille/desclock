@@ -1,2 +1,2 @@
 # desclock
-Stopwatch, Timer, Alarm
+Stopwatch, Timer, Alarm, World clock
