@@ -54,20 +54,22 @@ th {
   color: rgb(133, 133, 133);
   font-weight: 500;
 }
+th, td {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  width: 33.33%;
+}
 .laps th:first-child,
 .laps td:first-child {
   text-align: left;
-  width: 33.33%;
 }
 .laps th:nth-child(2),
 .laps td:nth-child(2) {
   text-align: center;
-  width: 33.33%;
 }
 .laps th:nth-child(3),
 .laps td:nth-child(3) {
   text-align: right;
-  width: 33.33%;
 }
 
 /* BUTTONS */
