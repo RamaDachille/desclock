@@ -1,5 +1,8 @@
-const button = document.querySelector(".button");
+const playButton = document.querySelector(".play-button");
+const restartButton = document.querySelector(".restart-button");
+const lapButton = document.querySelector(".lap-button");
 const buttonIcon = document.getElementById("play-icon");
+
 let minutes = document.querySelector(".mins");
 let secsAndMills = document.querySelector(".blue-text");
 
@@ -16,6 +19,9 @@ const startTimer = function () {
   if (!stopwatchRunning) {
     buttonIcon.classList.add('fa-pause')
     buttonIcon.classList.remove('fa-play')
+
+    restartButton.classList.remove('hidden')
+    lapButton.classList.remove('hidden')
     
     stopwatchRunning = true;
     intervalId = setInterval(() => {
@@ -37,4 +43,19 @@ const startTimer = function () {
   }
 };
 
-button.addEventListener("click", startTimer);
+const restartTimer = function() {
+  clearInterval(intervalId);
+  stopwatchRunning = false;
+
+  buttonIcon.classList.remove('fa-pause')
+  buttonIcon.classList.add('fa-play')
+  
+  minutes.textContent = '00';
+  secsAndMills.textContent = `00:00`;
+
+  restartButton.classList.add('hidden')
+  lapButton.classList.add('hidden')
+}
+
+playButton.addEventListener("click", startTimer);
+restartButton.addEventListener("click", restartTimer);

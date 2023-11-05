@@ -13,15 +13,45 @@
   </head>
 
   <body>
-    <!-- TIME -->
-    <div class="outer-circle">
-      <p class="time"><span class="mins">00</span>:<span class="blue-text">00.00</span></p>
-    </div>
+    <div class="content">
+      <!-- TIME -->
+      <div class="outer-circle">
+        <p class="time">
+          <span class="mins">00</span>:<span class="blue-text">00.00</span>
+        </p>
+      </div>
 
-    <!-- BUTTON -->
-    <button class="button">
-      <i id="play-icon" class="fa-solid fa-play" style="color: #ffffff"></i>
-    </button>
+      <!-- LAPS -->
+      <table class="laps">
+        <thead>
+          <tr>
+            <th>Lap</th>
+            <th>Lap time</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>+00:01.50</td>
+            <td>00:03.50</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- BUTTONS -->
+      <div class="button-container">
+        <button class="restart-button hidden">
+          <i id="restart-icon" class="fa-solid fa-xmark"></i>
+        </button>
+        <button class="play-button">
+          <i id="play-icon" class="fa-solid fa-play"></i>
+        </button>
+        <button class="lap-button hidden">
+          <i id="lap-icon" class="fa-regular fa-flag"></i>
+        </button>
+      </div>
+    </div>
 
     <!-- FOOTER NAVBAR -->
     <div class="navbar">

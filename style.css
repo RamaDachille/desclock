@@ -1,6 +1,7 @@
 :root {
   --accent-color: rgb(251, 130, 65);
   --blackish-color: rgb(20, 20, 20);
+  --white: rgb(253, 253, 253);
 }
 
 /* prettier-ignore */
@@ -11,23 +12,23 @@ body, p, i, div {
 }
 body {
   background-color: rgb(0, 0, 0);
+  color: var(--white);
+}
+
+.hidden {
+  display: none;
 }
 
 /* TIME */
-.outer-circle {
+.content {
   text-align: center;
-  color: #fff;
+}
+.outer-circle {
+  color: var(--white);
   font-size: 50px;
-  position: fixed;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
   width: calc(73px * 3.5);
   height: calc(73px * 3.5);
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: radial-gradient(
     circle at 50% 50%,
     rgb(9, 9, 9) 0%,
@@ -35,26 +36,77 @@ body {
     rgb(35, 35, 35) 71%,
     rgb(45, 45, 45) 100%
   );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto 30px auto;
 }
 .blue-text {
   color: var(--accent-color);
 }
 
-/* BUTTON */
-.button {
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  border-radius: 50%;
-  transform: translateX(-50%);
-  background-color: var(--accent-color);
-  width: 55px;
-  height: 55px;
+/* LAPS */
+.laps {
+  margin: 0 auto;
+  width: 350px;
+}
+th {
+  color: rgb(133, 133, 133);
+  font-weight: 500;
+}
+.laps th:first-child,
+.laps td:first-child {
+  text-align: left;
+  width: 33.33%;
+}
+.laps th:nth-child(2),
+.laps td:nth-child(2) {
+  text-align: center;
+  width: 33.33%;
+}
+.laps th:nth-child(3),
+.laps td:nth-child(3) {
+  text-align: right;
+  width: 33.33%;
+}
+
+/* BUTTONS */
+.button-container {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.play-button,
+.lap-button,
+.restart-button {
+  color: rgb(222, 222, 222);
+  border-radius: 50%;
   border: none;
   cursor: pointer;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.play-button {
+  background-color: var(--accent-color);
+  width: 55px;
+  height: 55px;
+  color: var(--white);
+  bottom: 110px;
+}
+.restart-button {
+  background-color: rgb(38, 38, 38);
+  width: 45px;
+  height: 45px;
+  margin: 0 -90px;
+  bottom: calc(110px + 5px);
+}
+.lap-button {
+  background-color: rgb(38, 38, 38);
+  width: 45px;
+  height: 45px;
+  margin: 0 90px;
+  bottom: calc(110px + 5px);
 }
 
 /* NAVBAR */
