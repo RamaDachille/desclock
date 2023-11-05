@@ -4,6 +4,8 @@ const lapButton = document.querySelector(".lap-button");
 const buttonIcon = document.getElementById("play-icon");
 
 const lapsBody = document.querySelector("tbody");
+const lapsTable = document.querySelector(".laps");
+
 let minutes = document.querySelector(".mins");
 let secsAndMills = document.querySelector(".blue-text");
 
@@ -16,8 +18,8 @@ let laps = [0];
 
 const calcTime = function (time, unit) {
   if (unit === "minutes") return Math.floor(time / 100 / 60);
-  if (unit === "seconds") return Math.floor((timeCounter / 100) % 60);
-  if (unit === "milliseconds") return timeCounter % 100;
+  if (unit === "seconds") return Math.floor((time / 100) % 60);
+  if (unit === "milliseconds") return time % 100;
 };
 
 const formatTime = (timeNum) => (timeNum + "").padStart(2, "0");
@@ -29,6 +31,8 @@ const startTimer = function () {
 
     restartButton.classList.remove("hidden");
     lapButton.classList.remove("hidden");
+
+    lapsTable.classList.remove("hidden");
 
     stopwatchRunning = true;
     intervalId = setInterval(() => {
@@ -61,24 +65,26 @@ const restartTimer = function () {
   restartButton.classList.add("hidden");
   lapButton.classList.add("hidden");
 
-  laps = [];
+  laps = [0];
+  while (lapsBody.firstChild) lapsBody.removeChild(lapsBody.firstChild);
+  lapsTable.classList.add("hidden");
 };
 
 const createLap = function () {
   laps.push(timeCounter);
-  console.log(laps);
+
   let curMins = formatTime(calcTime(timeCounter, "minutes"));
   let curSecs = formatTime(calcTime(timeCounter, "seconds"));
   let curMils = formatTime(calcTime(timeCounter, "milliseconds"));
-  let lapMin = formatTime(calcTime((timeCounter - laps.at(-2)), "minutes"));
-  let lapSec = formatTime(calcTime((timeCounter - laps.at(-2)), "seconds"));
-  let lapMil = formatTime(calcTime((timeCounter - laps.at(-2)), "milliseconds"));
+  let lapMin = formatTime(calcTime(timeCounter - laps.at(-2), "minutes"));
+  let lapSec = formatTime(calcTime(timeCounter - laps.at(-2), "seconds"));
+  let lapMil = formatTime(calcTime(timeCounter - laps.at(-2), "milliseconds"));
 
   lapsBody.insertAdjacentHTML(
     "afterbegin",
     `<tr>
       <td>${formatTime(laps.length)}</td>
-      <td>+${lapMin}:${lapSec}.${lapMil}</td>
+      <td>+ ${lapMin}:${lapSec}.${lapMil}</td>
       <td>${curMins}:${curSecs}.${curMils}</td>
     </tr>`
   );
