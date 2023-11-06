@@ -14,10 +14,9 @@ let secsAndMills = document.querySelector(".blue-text");
 let timeCounter = 0;
 let stopwatchRunning = false;
 let intervalId;
-
 let laps = [0];
 
-const calcTime = function (time, unit) {
+const calcTime = function (unit, time = timeCounter) {
   if (unit === "minutes") return Math.floor(time / 100 / 60);
   if (unit === "seconds") return Math.floor((time / 100) % 60);
   if (unit === "milliseconds") return time % 100;
@@ -27,20 +26,19 @@ const formatTime = (timeNum) => (timeNum + "").padStart(2, "0");
 
 const startTimer = function () {
   if (!stopwatchRunning) {
-    buttonIcon.classList.add("fa-pause");
     buttonIcon.classList.remove("fa-play");
+    buttonIcon.classList.add("fa-pause");
 
     restartButton.classList.remove("hidden");
     lapButton.classList.remove("hidden");
-
     lapsTable.classList.remove("hidden");
 
     stopwatchRunning = true;
     intervalId = setInterval(() => {
-      minutes.textContent = formatTime(calcTime(timeCounter, "minutes"));
+      minutes.textContent = formatTime(calcTime("minutes"));
       secsAndMills.textContent = `${formatTime(
-        calcTime(timeCounter, "seconds")
-      )}.${formatTime(calcTime(timeCounter, "milliseconds"))}`;
+        calcTime("seconds")
+      )}.${formatTime(calcTime("milliseconds"))}`;
 
       timeCounter++;
     }, 10);
@@ -55,6 +53,7 @@ const startTimer = function () {
 
 const restartTimer = function () {
   clearInterval(intervalId);
+  timeCounter = 0;
   stopwatchRunning = false;
 
   buttonIcon.classList.remove("fa-pause");
@@ -74,12 +73,12 @@ const restartTimer = function () {
 const createLap = function () {
   laps.push(timeCounter);
 
-  let curMins = formatTime(calcTime(timeCounter, "minutes"));
-  let curSecs = formatTime(calcTime(timeCounter, "seconds"));
-  let curMils = formatTime(calcTime(timeCounter, "milliseconds"));
-  let lapMin = formatTime(calcTime(timeCounter - laps.at(-2), "minutes"));
-  let lapSec = formatTime(calcTime(timeCounter - laps.at(-2), "seconds"));
-  let lapMil = formatTime(calcTime(timeCounter - laps.at(-2), "milliseconds"));
+  let curMins = formatTime(calcTime("minutes"));
+  let curSecs = formatTime(calcTime("seconds"));
+  let curMils = formatTime(calcTime("milliseconds"));
+  let lapMin = formatTime(calcTime("minutes", timeCounter - laps.at(-2)));
+  let lapSec = formatTime(calcTime("seconds", timeCounter - laps.at(-2)));
+  let lapMil = formatTime(calcTime("milliseconds", timeCounter - laps.at(-2)));
 
   lapsBody.insertAdjacentHTML(
     "afterbegin",
