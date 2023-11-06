@@ -54,7 +54,8 @@ th {
   color: rgb(133, 133, 133);
   font-weight: 500;
 }
-th, td {
+th,
+td {
   padding-top: 7px;
   padding-bottom: 7px;
   width: 33.33%;
@@ -74,14 +75,16 @@ th, td {
 
 /* BUTTONS */
 .button-container {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
-.play-button,
-.lap-button,
-.restart-button {
-  color: rgb(222, 222, 222);
+.button-container button {
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -97,6 +100,7 @@ th, td {
   bottom: 110px;
 }
 .restart-button {
+  color: rgb(222, 222, 222);
   background-color: rgb(38, 38, 38);
   width: 45px;
   height: 45px;
@@ -104,6 +108,7 @@ th, td {
   bottom: calc(110px + 5px);
 }
 .lap-button {
+  color: rgb(222, 222, 222);
   background-color: rgb(38, 38, 38);
   width: 45px;
   height: 45px;
@@ -121,6 +126,8 @@ th, td {
   border-top: 1px solid rgb(67, 67, 67);
   display: flex;
   justify-content: center;
+  z-index: 0;
+  box-shadow: 0px 0px 18px 123px black;
 }
 
 .navbar p {
@@ -157,17 +164,14 @@ th, td {
   transition: opacity 0.5s;
   z-index: -1;
 }
-
 .navbar div:hover::before {
   opacity: 1;
   z-index: -1;
 }
-
 .navbar div:hover {
   color: #e8e8e8;
   transition: color 1s;
 }
-
 .navbar div.active {
   background: radial-gradient(
     ellipse at 50% 100%,
