@@ -1,7 +1,12 @@
-const playButton = document.querySelector(".play-button");
-const restartButton = document.querySelector(".restart-button");
-const lapButton = document.querySelector(".lap-button");
-const buttonIcon = document.getElementById("play-icon");
+const pages = document.querySelectorAll(".navbar div");
+const stopwatch = document.querySelector(".stopwatch");
+const timer = document.querySelector(".timer");
+const timeText = document.querySelector(".time");
+
+const playBtn = document.querySelector(".play-button");
+const restartBtn = document.querySelector(".restart-button");
+const lapBtn = document.querySelector(".lap-button");
+const btnIcon = document.getElementById("play-icon");
 const lapIcon = document.getElementById("lap-icon");
 
 const lapsBody = document.querySelector("tbody");
@@ -10,12 +15,33 @@ const lapsTable = document.querySelector(".laps");
 let minutes = document.querySelector(".mins");
 let secsAndMills = document.querySelector(".blue-text");
 
+// PAGINATION
+let curPage = stopwatch;
+
+const pageChanger = function (page) {
+  restartTimer();
+  if (page === timer) timeText.classList.add("hidden");
+  else timeText.classList.remove("hidden");
+
+  page.classList.add("active");
+  curPage.classList.remove("active");
+  curPage = page;
+};
+
+Array.from(pages).forEach((page) => {
+  page.addEventListener("click", function () {
+    if (page.classList.contains("timer")) pageChanger(timer);
+    if (page.classList.contains("stopwatch")) pageChanger(stopwatch);
+  });
+});
+
 // STOPWATCH
 let timeCounter = 0;
 let stopwatchRunning = false;
-let intervalId;
 let laps = [0];
+let intervalId;
 
+// FUNCTIONS
 const calcTime = function (unit, time = timeCounter) {
   if (unit === "minutes") return Math.floor(time / 100 / 60);
   if (unit === "seconds") return Math.floor((time / 100) % 60);
@@ -26,12 +52,12 @@ const formatTime = (timeNum) => (timeNum + "").padStart(2, "0");
 
 const startTimer = function () {
   if (!stopwatchRunning) {
-    buttonIcon.classList.remove("fa-play");
-    buttonIcon.classList.add("fa-pause");
+    btnIcon.classList.remove("fa-play");
+    btnIcon.classList.add("fa-pause");
 
-    restartButton.classList.remove("hidden");
-    lapButton.classList.remove("hidden");
-    lapsTable.classList.remove("hidden");
+    [restartBtn, lapBtn, lapsTable].forEach((b) =>
+      b.classList.remove("hidden")
+    );
 
     stopwatchRunning = true;
     intervalId = setInterval(() => {
@@ -46,8 +72,8 @@ const startTimer = function () {
     clearInterval(intervalId);
     stopwatchRunning = false;
 
-    buttonIcon.classList.remove("fa-pause");
-    buttonIcon.classList.add("fa-play");
+    btnIcon.classList.remove("fa-pause");
+    btnIcon.classList.add("fa-play");
   }
 };
 
@@ -56,14 +82,14 @@ const restartTimer = function () {
   timeCounter = 0;
   stopwatchRunning = false;
 
-  buttonIcon.classList.remove("fa-pause");
-  buttonIcon.classList.add("fa-play");
+  btnIcon.classList.remove("fa-pause");
+  btnIcon.classList.add("fa-play");
 
   minutes.textContent = "00";
   secsAndMills.textContent = `00.00`;
 
-  restartButton.classList.add("hidden");
-  lapButton.classList.add("hidden");
+  restartBtn.classList.add("hidden");
+  lapBtn.classList.add("hidden");
 
   laps = [0];
   while (lapsBody.firstChild) lapsBody.removeChild(lapsBody.firstChild);
@@ -98,6 +124,7 @@ const createLap = function () {
   }, 90);
 };
 
-playButton.addEventListener("click", startTimer);
-restartButton.addEventListener("click", restartTimer);
-lapButton.addEventListener("click", createLap);
+// EVENTS
+playBtn.addEventListener("click", startTimer);
+restartBtn.addEventListener("click", restartTimer);
+lapBtn.addEventListener("click", createLap);
