@@ -2,6 +2,7 @@ const playButton = document.querySelector(".play-button");
 const restartButton = document.querySelector(".restart-button");
 const lapButton = document.querySelector(".lap-button");
 const buttonIcon = document.getElementById("play-icon");
+const lapIcon = document.getElementById("lap-icon");
 
 const lapsBody = document.querySelector("tbody");
 const lapsTable = document.querySelector(".laps");
@@ -88,6 +89,14 @@ const createLap = function () {
       <td>${curMins}:${curSecs}.${curMils}</td>
     </tr>`
   );
+
+  lapIcon.classList.remove("fa-regular");
+  lapIcon.classList.add("fa-solid");
+
+  setTimeout(function () {
+    lapIcon.classList.remove("fa-solid");
+    lapIcon.classList.add("fa-regular");
+  }, 90);
 };
 
 playButton.addEventListener("click", startTimer);
