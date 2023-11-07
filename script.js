@@ -14,7 +14,7 @@ const lapsTable = document.querySelector(".laps");
 
 let minutes = document.querySelector(".mins");
 let secsAndMills = document.querySelector(".blue-text");
-
+document.getElementById('seconds').focus()
 // PAGINATION
 let curPage = stopwatch;
 
@@ -30,7 +30,10 @@ const pageChanger = function (page) {
 
 Array.from(pages).forEach((page) => {
   page.addEventListener("click", function () {
-    if (page.classList.contains("timer")) pageChanger(timer);
+    if (page.classList.contains("timer")) {
+      pageChanger(timer);
+      document.getElementById('seconds').focus()
+    }
     if (page.classList.contains("stopwatch")) pageChanger(stopwatch);
   });
 });

@@ -10,20 +10,42 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   </head>
 
   <body>
     <div class="content">
       <!-- TIME -->
       <div class="outer-circle">
-        <p class="time">
+        <p class="time hidden">
           <span class="mins">00</span>:<span class="blue-text">00.00</span>
         </p>
+        <form>
+          <input
+            type="number"
+            name="hours"
+            id="hours"
+            min="0"
+            max="99"
+            step="1"
+            placeholder="00"
+          /><span>:</span><input
+            type="number"
+            name="minutes"
+            id="minutes"
+            min="0"
+            max="59"
+            step="1"
+            placeholder="00"
+          /><span>:</span><input
+            type="number"
+            name="seconds"
+            id="seconds"
+            min="0"
+            max="59"
+            step="1"
+            placeholder="00"
+          />
+        </form>
       </div>
 
       <!-- LAPS -->
