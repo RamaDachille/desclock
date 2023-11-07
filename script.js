@@ -134,13 +134,17 @@ const createLap = function () {
 // TIMER
 timerForm.addEventListener("submit", function (e) {
   e.preventDefault();
-
-  console.log(timerForm.elements)
-  console.log(timerForm.elements.hours.value)
+  
+  console.log(timerForm.elements.seconds.value);
 });
-// timerForm.submit(); should be in playBtn event
+
+
+playBtn.addEventListener("click", function () {
+  timerForm.classList.remove("hidden")
+  timerForm.requestSubmit()
+});
 
 // EVENTS
-playBtn.addEventListener("click", startTimer);
+// playBtn.addEventListener("click", startTimer);
 restartBtn.addEventListener("click", restartTimer);
 lapBtn.addEventListener("click", createLap);
