@@ -140,7 +140,7 @@ td {
 .navbar i {
   font-size: 25px;
 }
-.navbar div {
+.navbar a {
   position: relative;
   color: #938d93;
   text-align: center;
@@ -149,7 +149,7 @@ td {
   width: 73px;
 }
 
-.navbar div::before {
+.navbar a::before {
   content: "";
   position: absolute;
   top: 0;
@@ -167,15 +167,15 @@ td {
   transition: opacity 0.5s;
   z-index: -1;
 }
-.navbar div:hover::before {
+.navbar a:hover::before {
   opacity: 1;
   z-index: -1;
 }
-.navbar div:hover {
+.navbar a:hover {
   color: #e8e8e8;
   transition: color 1s;
 }
-.navbar div.active {
+.navbar a.active {
   background: radial-gradient(
     ellipse at 50% 100%,
     rgba(86, 86, 86, 0.5) 0%,
@@ -185,7 +185,7 @@ td {
   );
   color: #e8e8e8;
 }
-.navbar div.active i {
+.navbar a.active i {
   color: #e8e8e8;
   /* color: #938d93; (when active) */
 }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>desclock</title>
+    <title>timer</title>
 
     <script
       src="https://kit.fontawesome.com/e2a9b61ec9.js"
@@ -16,23 +16,42 @@
     <div class="content">
       <!-- TIME -->
       <div class="outer-circle">
-        <p class="time">
-          <span class="mins">00</span>:<span class="blue-text">00:00</span>
+        <p class="time hidden">
+          <span class="mins">00</span>:<span class="blue-text">00.00</span>
         </p>
-      </div>
 
-      <!-- LAPS -->
-      <table class="laps hidden">
-        <thead>
-          <tr>
-            <th>Lap</th>
-            <th>Lap time</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+        <form id="timer-form" class="">
+          <input
+            type="number"
+            name="hours"
+            id="hours"
+            min="0"
+            max="99"
+            step="1"
+            placeholder="00"
+          /><span>:</span
+          ><input
+            type="number"
+            name="minutes"
+            id="minutes"
+            min="0"
+            max="59"
+            step="1"
+            placeholder="00"
+          /><span>:</span
+          ><input
+            type="number"
+            name="seconds"
+            id="seconds"
+            min="0"
+            max="59"
+            step="1"
+            placeholder="00"
+          />
+        </form>
+      </div>
     </div>
+
     <!-- BUTTONS -->
     <div class="button-container">
       <button class="restart-button hidden">
@@ -41,19 +60,16 @@
       <button class="play-button">
         <i id="play-icon" class="fa-solid fa-play"></i>
       </button>
-      <button class="lap-button hidden">
-        <i id="lap-icon" class="fa-regular fa-flag"></i>
-      </button>
     </div>
 
     <!-- FOOTER NAVBAR -->
     <div class="navbar">
-      <a href="/index.html" class="stopwatch active">
+      <a href="/index.html" class="stopwatch">
         <i class="fa-solid fa-stopwatch"></i>
         <p>Stopwatch</p>
       </a>
 
-      <a href="/timer.html" class="timer">
+      <a href="/timer.html" class="timer active">
         <i class="fa-solid fa-hourglass-start"></i>
         <p>Timer</p>
       </a>
@@ -69,6 +85,6 @@
       </a>
     </div>
 
-    <script src="/script.js"></script>
+    <script src="/timer.js"></script>
   </body>
 </html>
