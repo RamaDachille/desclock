@@ -194,9 +194,9 @@ td {
 
 /* FORM */
 input[type="number"] {
-  color: white;
+  color: var(--white);
   border: none;
-  /* width: 50px; */
+  width: 50px;
   text-align: center;
   background-color: transparent;
   font-size: var(--time-font);

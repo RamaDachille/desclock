@@ -2,6 +2,7 @@ const pages = document.querySelectorAll(".navbar div");
 const stopwatch = document.querySelector(".stopwatch");
 const timer = document.querySelector(".timer");
 const timeText = document.querySelector(".time");
+const timerForm = document.getElementById("timer-form");
 
 const playBtn = document.querySelector(".play-button");
 const restartBtn = document.querySelector(".restart-button");
@@ -14,7 +15,7 @@ const lapsTable = document.querySelector(".laps");
 
 let minutes = document.querySelector(".mins");
 let secsAndMills = document.querySelector(".blue-text");
-document.getElementById('seconds').focus()
+
 // PAGINATION
 let curPage = stopwatch;
 
@@ -32,9 +33,12 @@ Array.from(pages).forEach((page) => {
   page.addEventListener("click", function () {
     if (page.classList.contains("timer")) {
       pageChanger(timer);
-      document.getElementById('seconds').focus()
+      timerForm.classList.remove('hidden')
+      document.getElementById("seconds").focus();
+    } else if (page.classList.contains("stopwatch")) {
+      timerForm.classList.add('hidden')
+      pageChanger(stopwatch);
     }
-    if (page.classList.contains("stopwatch")) pageChanger(stopwatch);
   });
 });
 
@@ -53,7 +57,7 @@ const calcTime = function (unit, time = timeCounter) {
 
 const formatTime = (timeNum) => (timeNum + "").padStart(2, "0");
 
-const startTimer = function () {
+const startTimer = function (increase = true) {
   if (!stopwatchRunning) {
     btnIcon.classList.remove("fa-play");
     btnIcon.classList.add("fa-pause");
@@ -126,6 +130,15 @@ const createLap = function () {
     lapIcon.classList.add("fa-regular");
   }, 90);
 };
+
+// TIMER
+timerForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  console.log(timerForm.elements)
+  console.log(timerForm.elements.hours.value)
+});
+// timerForm.submit(); should be in playBtn event
 
 // EVENTS
 playBtn.addEventListener("click", startTimer);
