@@ -138,9 +138,8 @@ timerForm.addEventListener("submit", function (e) {
   console.log(timerForm.elements.seconds.value);
 });
 
-
 playBtn.addEventListener("click", function () {
-  timerForm.classList.remove("hidden")
+  // timerForm.classList.remove("hidden")
   timerForm.requestSubmit()
 });
 
