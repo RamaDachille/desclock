@@ -55,7 +55,6 @@ const startTimer = function () {
     intervalId = setInterval(() => {
       timeCounter--;
       updateDOMTime()
-      console.log(timeCounter);
     }, 1000);
   } else {
     clearInterval(intervalId);
