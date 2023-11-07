@@ -17,7 +17,7 @@
       <!-- TIME -->
       <div class="outer-circle">
         <p class="time hidden">
-          <span class="mins">00</span>:<span class="blue-text">00.00</span>
+          <span class="mins">00</span>:<span class="blue-text">00:00</span>
         </p>
 
         <form id="timer-form" class="">
@@ -53,8 +53,10 @@
 
       <div class="modal" id="timerUpModal">
         <div class="modal-content">
-          <p>Your timer is up!</p>
-          <button id="closeModal">OK</button>
+          <p>Time's up!</p>
+          <p><span class="alert-hrs">00</span>:<span class="alert-time">00:00</span> time passed</p>
+          <button id="restartTimer">Restart</button>
+          <button id="closeModal">Close</button>
         </div>
       </div>
     </div>

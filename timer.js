@@ -6,31 +6,27 @@ const playBtn = document.querySelector(".play-button");
 const restartBtn = document.querySelector(".restart-button");
 const btnIcon = document.getElementById("play-icon");
 
+const timerUpModal = document.getElementById("timerUpModal");
+const closeModalBtn = document.getElementById("closeModal");
+const restartTimerBtn = document.getElementById("restartTimer");
+
 let hours = document.querySelector(".mins");
 let minsAndSecs = document.querySelector(".blue-text");
 
 // TIMER
-let timeCounter = 0;
+let initialTime = timeCounter = 0;
+// let initialTime = 0;
 let stopwatchRunning = false;
 let intervalId;
 
 // FUNCTIONS
 const calcTime = function (unit, time = timeCounter) {
   if (unit === "hours") return Math.floor(time / 60 / 60);
-  if (unit === "minutes") return Math.floor(time % 3600 / 60);
+  if (unit === "minutes") return Math.floor((time % 3600) / 60);
   if (unit === "seconds") return Math.floor(time % 60);
 };
 
 const formatTime = (timeNum) => (timeNum + "").padStart(2, "0");
-
-timerForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  timeCounter =
-    +timerForm.elements.hours.value * 3600 +
-    +timerForm.elements.minutes.value * 60 +
-    +timerForm.elements.seconds.value;
-});
 
 const updateDOMTime = function () {
   hours.textContent = formatTime(calcTime("hours"));
@@ -39,22 +35,40 @@ const updateDOMTime = function () {
   )}`;
 };
 
+timerForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  initialTime = timeCounter =
+    +timerForm.elements.hours.value * 3600 +
+    +timerForm.elements.minutes.value * 60 +
+    +timerForm.elements.seconds.value;
+  updateDOMTime();
+});
+
 const startTimer = function () {
   if (!stopwatchRunning) {
-    timerForm.requestSubmit();
-    updateDOMTime()
+    stopwatchRunning = true;
+    if(initialTime === timeCounter) timerForm.requestSubmit();
+    
     timerForm.classList.add("hidden");
     timeText.classList.remove("hidden");
-
+    
     btnIcon.classList.remove("fa-play");
     btnIcon.classList.add("fa-pause");
     restartBtn.classList.remove("hidden");
-
-    stopwatchRunning = true;
-
+    
     intervalId = setInterval(() => {
-      timeCounter--;
-      updateDOMTime()
+      if (timeCounter > 0) timeCounter--;
+      updateDOMTime();
+      if (timeCounter < 1) {
+        timerUpModal.style.display = "block";
+        clearInterval(intervalId);
+        stopwatchRunning = false;
+        initialTime = timeCounter
+
+        btnIcon.classList.remove("fa-pause");
+        btnIcon.classList.add("fa-play");
+      }
     }, 1000);
   } else {
     clearInterval(intervalId);
@@ -73,7 +87,7 @@ const restartTimer = function () {
   timeText.classList.add("hidden");
   timerForm.classList.remove("hidden");
   seconds.focus();
-  timerForm.reset()
+  timerForm.reset();
 
   btnIcon.classList.remove("fa-pause");
   btnIcon.classList.add("fa-play");
