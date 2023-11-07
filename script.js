@@ -1,13 +1,7 @@
-const pages = document.querySelectorAll(".navbar div");
-const stopwatch = document.querySelector(".stopwatch");
-const timer = document.querySelector(".timer");
-const timeText = document.querySelector(".time");
-const timerForm = document.getElementById("timer-form");
-
 const playBtn = document.querySelector(".play-button");
 const restartBtn = document.querySelector(".restart-button");
 const lapBtn = document.querySelector(".lap-button");
-const btnIcon = document.getElementById("play-icon");
+const playIcon = document.getElementById("play-icon");
 const lapIcon = document.getElementById("lap-icon");
 
 const lapsBody = document.querySelector("tbody");
@@ -15,32 +9,6 @@ const lapsTable = document.querySelector(".laps");
 
 let minutes = document.querySelector(".mins");
 let secsAndMills = document.querySelector(".blue-text");
-
-// PAGINATION
-// let curPage = stopwatch;
-
-// const pageChanger = function (page) {
-//   restartTimer();
-//   if (page === timer) timeText.classList.add("hidden");
-//   else timeText.classList.remove("hidden");
-
-//   page.classList.add("active");
-//   curPage.classList.remove("active");
-//   curPage = page;
-// };
-
-// Array.from(pages).forEach((page) => {
-//   page.addEventListener("click", function () {
-//     if (page.classList.contains("timer")) {
-//       pageChanger(timer);
-//       timerForm.classList.remove('hidden')
-//       document.getElementById("seconds").focus();
-//     } else if (page.classList.contains("stopwatch")) {
-//       timerForm.classList.add('hidden')
-//       pageChanger(stopwatch);
-//     }
-//   });
-// });
 
 // STOPWATCH
 let timeCounter = 0;
@@ -59,8 +27,8 @@ const formatTime = (timeNum) => (timeNum + "").padStart(2, "0");
 
 const startStopwatch = function () {
   if (!stopwatchRunning) {
-    btnIcon.classList.remove("fa-play");
-    btnIcon.classList.add("fa-pause");
+    playIcon.classList.remove("fa-play");
+    playIcon.classList.add("fa-pause");
 
     restartBtn.classList.remove("hidden")
     lapBtn.classList.remove("hidden")
@@ -78,18 +46,18 @@ const startStopwatch = function () {
     clearInterval(intervalId);
     stopwatchRunning = false;
 
-    btnIcon.classList.remove("fa-pause");
-    btnIcon.classList.add("fa-play");
+    playIcon.classList.remove("fa-pause");
+    playIcon.classList.add("fa-play");
   }
 };
 
-const restartTimer = function () {
+const restartStopwatch = function () {
   clearInterval(intervalId);
   timeCounter = 0;
   stopwatchRunning = false;
 
-  btnIcon.classList.remove("fa-pause");
-  btnIcon.classList.add("fa-play");
+  playIcon.classList.remove("fa-pause");
+  playIcon.classList.add("fa-play");
 
   minutes.textContent = "00";
   secsAndMills.textContent = `00.00`;
@@ -130,19 +98,7 @@ const createLap = function () {
   }, 90);
 };
 
-// TIMER
-timerForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  
-  console.log(timerForm.elements.seconds.value);
-});
-
-// playBtn.addEventListener("click", function () {
-//   // timerForm.classList.remove("hidden")
-//   timerForm.requestSubmit()
-// });
-
 // EVENTS
 playBtn.addEventListener("click", startStopwatch);
-restartBtn.addEventListener("click", restartTimer);
+restartBtn.addEventListener("click", restartStopwatch);
 lapBtn.addEventListener("click", createLap);
