@@ -23,6 +23,8 @@ const restartTimerBtn = document.getElementById("restartTimer");
 
 let hours = document.querySelector(".mins");
 let minsAndSecs = document.querySelector(".blue-text");
+let alertHrs = document.querySelector(".alert-hrs");
+let alertMinsSecs = document.querySelector(".alert-time");
 
 // TIMER
 let initialTime = (timeCounter = 0);
@@ -41,10 +43,14 @@ const calcTime = function (unit, time = timeCounter) {
 
 const formatTime = (timeNum) => (timeNum + "").padStart(2, "0");
 
-const updateDOMTime = function () {
-  hours.textContent = formatTime(calcTime("hours"));
-  minsAndSecs.textContent = `${formatTime(calcTime("minutes"))}:${formatTime(
-    calcTime("seconds")
+const updateDOMTime = function (
+  hrs = hours,
+  minsSecs = minsAndSecs,
+  time = timeCounter
+) {
+  hrs.textContent = formatTime(calcTime("hours", time));
+  minsSecs.textContent = `${formatTime(calcTime("minutes", time))}:${formatTime(
+    calcTime("seconds", time)
   )}`;
 };
 
@@ -76,6 +82,7 @@ const startTimer = function () {
       updateDOMTime();
       if (timeCounter < 1) {
         timerUpModal.style.display = "block";
+        updateDOMTime(alertHrs, alertMinsSecs, initialTime)
         restartTimer(false);
         timerIcon.classList.add("fa-shake");
         if (!audioMute) ringtone.play();

@@ -44,13 +44,13 @@ form span {
 
 /* MODAL DIALOG */
 .modal {
-  display: none;
+  /* display: none; */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(28, 28, 28, 0.445);
+  background-color: rgba(28, 28, 28, 0.67);
   justify-content: center;
   align-items: center;
   z-index: 2;
@@ -58,13 +58,16 @@ form span {
 .modal-content {
   background-color: #323232;
   color: var(--white);
-  padding: 20px;
-  border-radius: 5px;
+  width: 300px;
+  /* border-radius: 5px; */
   text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+#alert-title {
+  font-size: 30px;
 }
 .modal button {
   background-color: var(--accent-color);
