@@ -96,6 +96,7 @@ td {
 }
 .play-button {
   background-color: var(--accent-color);
+  font-size: 16px;
   width: 55px;
   height: 55px;
   color: var(--white);
@@ -103,6 +104,7 @@ td {
 }
 .restart-button {
   color: rgb(222, 222, 222);
+  font-size: 16px;
   background-color: rgb(38, 38, 38);
   width: 45px;
   height: 45px;

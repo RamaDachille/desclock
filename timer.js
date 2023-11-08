@@ -3,8 +3,13 @@ const timerForm = document.getElementById("timer-form");
 const seconds = document.getElementById("seconds");
 
 const playBtn = document.querySelector(".play-button");
+const playIcon = document.getElementById("play-icon");
 const restartBtn = document.querySelector(".restart-button");
-const btnIcon = document.getElementById("play-icon");
+const audioBtn = document.querySelector(".lap-button");
+const audioIcon = document.getElementById("audio-icon");
+
+const timerIcon = document.querySelector(".timer i");
+const timerNav = document.querySelector(".timer");
 
 const timerUpModal = document.getElementById("timerUpModal");
 const closeModalBtn = document.getElementById("closeModal");
@@ -14,10 +19,13 @@ let hours = document.querySelector(".mins");
 let minsAndSecs = document.querySelector(".blue-text");
 
 // TIMER
-let initialTime = timeCounter = 0;
-// let initialTime = 0;
+let initialTime = (timeCounter = 0);
 let stopwatchRunning = false;
 let intervalId;
+let audioMute = false
+// let initialTime = 0;
+
+const ringtone = new Audio('/ringtone.mp3')
 
 // FUNCTIONS
 const calcTime = function (unit, time = timeCounter) {
@@ -48,60 +56,74 @@ timerForm.addEventListener("submit", function (e) {
 const startTimer = function () {
   if (!stopwatchRunning) {
     stopwatchRunning = true;
-    if(initialTime === timeCounter) timerForm.requestSubmit();
-    
+    if (initialTime === timeCounter) timerForm.requestSubmit();
+
     timerForm.classList.add("hidden");
     timeText.classList.remove("hidden");
-    
-    btnIcon.classList.remove("fa-play");
-    btnIcon.classList.add("fa-pause");
+
+    playIcon.classList.remove("fa-play");
+    playIcon.classList.add("fa-pause");
     restartBtn.classList.remove("hidden");
-    
+    audioBtn.classList.remove("hidden");
+
     intervalId = setInterval(() => {
       if (timeCounter > 0) timeCounter--;
       updateDOMTime();
       if (timeCounter < 1) {
         timerUpModal.style.display = "block";
-        clearInterval(intervalId);
-        stopwatchRunning = false;
-        initialTime = timeCounter
-
-        btnIcon.classList.remove("fa-pause");
-        btnIcon.classList.add("fa-play");
+        restartTimer(false);
+        timerIcon.classList.add("fa-shake");
+        if(!audioMute) ringtone.play()
       }
     }, 1000);
   } else {
     clearInterval(intervalId);
     stopwatchRunning = false;
 
-    btnIcon.classList.remove("fa-pause");
-    btnIcon.classList.add("fa-play");
+    playIcon.classList.remove("fa-pause");
+    playIcon.classList.add("fa-play");
   }
 };
 
-const restartTimer = function () {
+const restartTimer = function (clear = true, initTime = 0) {
+  if (clear) {
+    timeText.classList.add("hidden");
+    timerForm.classList.remove("hidden");
+    seconds.focus();
+    timerForm.reset();
+  }
   clearInterval(intervalId);
-  timeCounter = 0;
+  initialTime = timeCounter = initTime;
   stopwatchRunning = false;
 
-  timeText.classList.add("hidden");
-  timerForm.classList.remove("hidden");
-  seconds.focus();
-  timerForm.reset();
-
-  btnIcon.classList.remove("fa-pause");
-  btnIcon.classList.add("fa-play");
-
-  hours.textContent = "00";
-  minsAndSecs.textContent = `00:00`;
-
+  playIcon.classList.remove("fa-pause");
+  playIcon.classList.add("fa-play");
   restartBtn.classList.add("hidden");
+  audioBtn.classList.add("hidden");
 };
+
+const closeWindow = function(restartTime = true) {
+  timerUpModal.style.display = "none";
+  timerIcon.classList.remove("fa-shake");
+  ringtone.pause()
+  ringtone.currentTime = 0
+  restartTime ? restartTimer() : startTimer()
+}
 
 // EVENTS
 playBtn.addEventListener("click", startTimer);
 restartBtn.addEventListener("click", restartTimer);
+closeModalBtn.addEventListener("click", closeWindow);
 
-// Focuses the form text cursor when reloading
+restartTimerBtn.addEventListener("click", () => {closeWindow(false)});
+audioBtn.addEventListener('click', function() {
+  audioIcon.classList.toggle('fa-volume-high')
+  audioIcon.classList.toggle('fa-volume-xmark')
+  if(audioIcon.classList.contains('fa-volume-high')) audioMute = false
+  else audioMute = true
+})
+
+// Focuses the form's text cursor when reloading
 seconds.focus();
 document.addEventListener("DOMContentLoaded", () => seconds.focus());
+timerNav.addEventListener("click", () => seconds.focus());
