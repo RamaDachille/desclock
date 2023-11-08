@@ -6,6 +6,7 @@ const lapIcon = document.getElementById("lap-icon");
 
 const lapsBody = document.querySelector("tbody");
 const lapsTable = document.querySelector(".laps");
+const stopwatchIcon = document.querySelector(".stopwatch-icon");
 
 let minutes = document.querySelector(".mins");
 let secsAndMills = document.querySelector(".blue-text");
@@ -15,6 +16,15 @@ let timeCounter = 0;
 let stopwatchRunning = false;
 let laps = [0];
 let intervalId;
+
+const animateIcon = function (animate) {
+  if (animate && timeCounter <= 1) {
+    stopwatchIcon.classList.add("fa-shake");
+    setTimeout(function () {
+      stopwatchIcon.classList.remove("fa-shake");
+    }, 950);
+  }
+};
 
 const calcTime = function (unit, time = timeCounter) {
   if (unit === "minutes") return Math.floor(time / 100 / 60);
@@ -26,6 +36,7 @@ const formatTime = (timeNum) => (timeNum + "").padStart(2, "0");
 
 const startStopwatch = function () {
   if (!stopwatchRunning) {
+    animateIcon(true)
     playIcon.classList.remove("fa-play");
     playIcon.classList.add("fa-pause");
 

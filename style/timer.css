@@ -1,6 +1,6 @@
 :root {
-  /* --accent-color: rgb(70, 111, 255); */
-  --accent-color: rgb(255, 116, 70);
+  --accent-color: rgb(70, 111, 255);
+  /* --accent-color: rgb(255, 116, 70); */
   --blackish-color: rgb(20, 20, 20);
   --white: rgb(253, 253, 253);
   --time-font: 50px;
@@ -44,7 +44,7 @@ form span {
 
 /* MODAL DIALOG */
 .modal {
-  /* display: none; */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -53,32 +53,49 @@ form span {
   background-color: rgba(28, 28, 28, 0.67);
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 4;
 }
 .modal-content {
-  background-color: #323232;
+  background-color: rgb(51, 51, 51);
   color: var(--white);
-  width: 300px;
-  /* border-radius: 5px; */
-  text-align: center;
+  padding: 15px;
+  border-radius: 7px;
+  text-align: left;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#alert-title {
-  font-size: 30px;
-}
 .modal button {
-  background-color: var(--accent-color);
-  color: var(--white);
+  background-color: rgb(54, 61, 80);
+  color: var(--accent-color);
+  border-radius: 7px;
+  font-weight: 550;
   border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
+  width: 100px;
+  padding: 10px;
   cursor: pointer;
 }
+#closeModal {
+  margin-left: 12px;
+}
+#modal-title {
+  font-size: 36px;
+  margin: -5px 0;
+}
+.hrgls {
+  font-size: 25px;
+  padding: 0 5px;
+}
+.modal-text {
+  padding: 15px 0;
+}
 .modal button:hover {
-  background-color: #0056b3;
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+.fa-arrow-rotate-left{
+  font-size: 11px;
 }
 
 /* FORM VALIDATION */

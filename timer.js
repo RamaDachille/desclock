@@ -32,9 +32,22 @@ let stopwatchRunning = false;
 let intervalId;
 let audioMute = false;
 const ringtone = new Audio("/ringtone.mp3");
-// let initialTime = 0;
-
+let animatePhase = 0;
+const timerAnimation = {
+  0: "fa-hourglass-start",
+  1: "fa-hourglass-half",
+  2: "fa-hourglass-end",
+};
 // FUNCTIONS
+const animateIcon = function (reset = false) {
+  if (animatePhase > 1 || reset) animatePhase = 0;
+  else animatePhase++;
+  timerIcon.classList.remove(
+    timerAnimation[animatePhase == 0 ? 2 : animatePhase - 1]
+  );
+  timerIcon.classList.add(timerAnimation[animatePhase]);
+};
+
 const calcTime = function (unit, time = timeCounter) {
   if (unit === "hours") return Math.floor(time / 60 / 60);
   if (unit === "minutes") return Math.floor((time % 3600) / 60);
@@ -80,9 +93,10 @@ const startTimer = function () {
     intervalId = setInterval(() => {
       if (timeCounter > 0) timeCounter--;
       updateDOMTime();
+      animateIcon();
       if (timeCounter < 1) {
         timerUpModal.style.display = "block";
-        updateDOMTime(alertHrs, alertMinsSecs, initialTime)
+        updateDOMTime(alertHrs, alertMinsSecs, initialTime);
         restartTimer(false);
         timerIcon.classList.add("fa-shake");
         if (!audioMute) ringtone.play();
