@@ -9,7 +9,9 @@
       src="https://kit.fontawesome.com/e2a9b61ec9.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
+    <link rel="stylesheet" type="text/css" href="/css/timer.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
   </head>
 
   <body>
@@ -50,11 +52,19 @@
           />
         </form>
       </div>
+      <!-- <span class="error-message" id="hours-error"></span>
+      <span class="error-message" id="minutes-error"></span>
+      <span class="error-message" id="seconds-error"></span> -->
 
       <div class="modal" id="timerUpModal">
         <div class="modal-content">
           <p>Time's up!</p>
-          <p><span class="alert-hrs">00</span>:<span class="alert-time">00:00</span> time passed</p>
+          <p>
+            <span class="alert-hrs">00</span>:<span class="alert-time"
+              >00:00</span
+            >
+            time passed
+          </p>
           <button id="restartTimer">Restart</button>
           <button id="closeModal">Close</button>
         </div>

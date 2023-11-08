@@ -16,7 +16,6 @@ let stopwatchRunning = false;
 let laps = [0];
 let intervalId;
 
-// FUNCTIONS
 const calcTime = function (unit, time = timeCounter) {
   if (unit === "minutes") return Math.floor(time / 100 / 60);
   if (unit === "seconds") return Math.floor((time / 100) % 60);
@@ -30,9 +29,9 @@ const startStopwatch = function () {
     playIcon.classList.remove("fa-play");
     playIcon.classList.add("fa-pause");
 
-    restartBtn.classList.remove("hidden")
-    lapBtn.classList.remove("hidden")
-    lapsTable.classList.remove("hidden")
+    restartBtn.classList.remove("hidden");
+    lapBtn.classList.remove("hidden");
+    lapsTable.classList.remove("hidden");
 
     stopwatchRunning = true;
     intervalId = setInterval(() => {
@@ -80,15 +79,16 @@ const createLap = function () {
   let lapSec = formatTime(calcTime("seconds", timeCounter - laps.at(-2)));
   let lapMil = formatTime(calcTime("milliseconds", timeCounter - laps.at(-2)));
 
-  lapsBody.insertAdjacentHTML(
-    "afterbegin",
-    `<tr>
+  if (timeCounter !== laps.at(-2)) {
+    lapsBody.insertAdjacentHTML(
+      "afterbegin",
+      `<tr>
       <td>${formatTime(laps.length)}</td>
       <td>+ ${lapMin}:${lapSec}.${lapMil}</td>
       <td>${curMins}:${curSecs}.${curMils}</td>
     </tr>`
-  );
-
+    );
+  }
   lapIcon.classList.remove("fa-regular");
   lapIcon.classList.add("fa-solid");
 

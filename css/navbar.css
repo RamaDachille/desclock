@@ -1,0 +1,78 @@
+:root {
+  /* --accent-color: rgb(70, 111, 255); */
+  --accent-color: rgb(255, 116, 70);
+  --blackish-color: rgb(20, 20, 20);
+  --white: rgb(253, 253, 253);
+  --time-font: 50px;
+}
+
+.navbar {
+  background-color: var(--blackish-color);
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid rgb(67, 67, 67);
+  display: flex;
+  justify-content: center;
+  z-index: 0;
+  box-shadow: 0px 0px 18px 123px black;
+  cursor: pointer;
+}
+
+.navbar p {
+  font-size: 14px;
+  margin-top: 4px;
+}
+.navbar i {
+  font-size: 25px;
+}
+.navbar a {
+  position: relative;
+  color: #938d93;
+  text-align: center;
+  padding: 11px 13px;
+  text-decoration: none;
+  width: 73px;
+}
+
+.navbar a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(86, 86, 86, 0.5) 0%,
+    rgba(76, 76, 76, 0.5) 30%,
+    var(--blackish-color) 70%,
+    var(--blackish-color) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: -1;
+}
+.navbar a:hover::before {
+  opacity: 1;
+  z-index: -1;
+}
+.navbar a:hover {
+  color: #e8e8e8;
+  transition: color 1s;
+}
+.navbar a.active {
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(86, 86, 86, 0.5) 0%,
+    rgba(76, 76, 76, 0.5) 30%,
+    var(--blackish-color) 70%,
+    var(--blackish-color) 100%
+  );
+  color: #e8e8e8;
+}
+.navbar a.active i {
+  color: #e8e8e8;
+  /* color: #938d93; (when active) */
+}
