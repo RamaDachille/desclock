@@ -1,12 +1,6 @@
 const timeText = document.querySelector(".time");
 const timerForm = document.getElementById("timer-form");
-
-// const formHrs = document.getElementById("hours");
-// const formMins = document.getElementById("minutes");
 const formSecs = document.getElementById("seconds");
-// const hoursError = document.getElementById("hours-error");
-// const minutesError = document.getElementById("minutes-error");
-// const secondsError = document.getElementById("seconds-error");
 
 const playBtn = document.querySelector(".play-button");
 const playIcon = document.getElementById("play-icon");
@@ -136,44 +130,7 @@ const closeWindow = function (restartTime = true) {
   restartTime ? restartTimer() : startTimer();
 };
 
-// const validateForm = function (e) {
-//   const inputElement = e.target;
-//   const inputValue = parseInt(inputElement.value, 10);
-
-//   if (
-//     isNaN(inputValue) ||
-//     inputValue < parseInt(inputElement.min, 10) ||
-//     inputValue > parseInt(inputElement.max, 10)
-//   ) {
-//     inputElement.setCustomValidity("Value is out of range.");
-//     displayErrorMessage(inputElement);
-//   } else {
-//     inputElement.setCustomValidity("");
-//     displayErrorMessage(inputElement, false);
-//   }
-// };
-
-// const displayErrorMessage = function (inputElement, show = true) {
-//   const errorId = inputElement.id + "-error";
-//   const errorElement = document.getElementById(errorId);
-
-//   if (show) {
-//     errorElement.textContent = inputElement.validationMessage;
-//     console.log(inputElement.validationMessage);
-//     errorElement.style.display = "block";
-//   } else {
-//     errorElement.textContent = "";
-//     errorElement.style.display = "none";
-//   }
-// };
-
 // EVENTS
-
-// Form validation
-// formHrs.addEventListener("input", validateForm);
-// formMins.addEventListener("input", validateForm);
-// formSecs.addEventListener("input", validateForm);
-
 playBtn.addEventListener("click", startTimer);
 restartBtn.addEventListener("click", restartTimer);
 closeModalBtn.addEventListener("click", closeWindow);
