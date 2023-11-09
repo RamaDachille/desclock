@@ -4,7 +4,7 @@ DescClock is a beautifully designed, multifunctional timekeeping web app. It off
 Live Website: [desclock.netlify.app](https://desclock.netlify.app/)
 
 ### Features
-**Stopwatch**: Keep track of time with precision, and record laps to monitor progress.
-**Timer**: Set countdown timers for various activities and events.
-**Alarm**: Configure alarms to remind you of important tasks.
-**World Clock**: Stay in sync with different time zones around the world.
+ - **Stopwatch**: Keep track of time with precision, and record laps to monitor progress.
+ - **Timer**: Set countdown timers for various activities and events.
+ - **Alarm**: Configure alarms to remind you of important tasks.
+ - **World Clock**: Stay in sync with different time zones around the world.
